@@ -1,22 +1,22 @@
-GET http://127.0.0.1:5000/data.txt
+GET http://127.0.0.1:5000/data/data.txt
 ### Display text
 
-POST http://127.0.0.1:5000/data.txt
+POST http://127.0.0.1:5000/data/data.txt
 ### Create a file
 
-PUT http://127.0.0.1:5000/data.txt
+PUT http://127.0.0.1:5000/data/data.txt
 Content-Type: text/plain
 Content-Length: 256
 
 Completely new text
 ### Delete text and create new
 
-PATCH http://127.0.0.1:5000/data.txt
+PATCH http://127.0.0.1:5000/data/data.txt
 Content-Type: text/plain
 Content-Length: 256
 
 Text added
 ### Edit file
 
-DELETE http://127.0.0.1:5000/data.txt
+DELETE http://127.0.0.1:5000/data/data.txt
 ### Delete a file

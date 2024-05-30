@@ -1,13 +1,15 @@
 # server.py
 from flask import Flask, request
 import os
+import data.directories as directories
 
-filePath = "data.txt"
+filePath = directories.file_directory
+urlPath = '/data/data.txt'
 
 app = Flask(__name__)
 
 # Display text 
-@app.route('/data.txt', methods=['GET'])
+@app.route(urlPath, methods=['GET'])
 def get_data():
     if(os.path.isfile(filePath)==False):
         return "The file doesnt exist"
@@ -17,7 +19,7 @@ def get_data():
     return text
 
 # Create a file
-@app.route('/data.txt', methods=['POST'])
+@app.route(urlPath, methods=['POST'])
 def post_data():
     if(os.path.isfile(filePath)):
         return "The file already exists"
@@ -26,7 +28,7 @@ def post_data():
     return "File was created"
 
 # Delete text and add new 
-@app.route('/data.txt', methods=['PUT'])
+@app.route(urlPath, methods=['PUT'])
 def replace_data():
     file = open(filePath, "w")
     text = request.data.decode("utf-8")
@@ -35,7 +37,7 @@ def replace_data():
     return "File was changed"
 
 # Add new text
-@app.route("/data.txt", methods=['PATCH'])
+@app.route(urlPath, methods=['PATCH'])
 def update_data():
     file = open(filePath, "a+")
     text = request.data.decode("utf-8")
@@ -44,7 +46,7 @@ def update_data():
     return "File was edited"
 
 # Delete a file
-@app.route('/data.txt', methods=['DELETE'])
+@app.route(urlPath, methods=['DELETE'])
 def delete_data():
     os.remove(filePath)
     return "File removed"
